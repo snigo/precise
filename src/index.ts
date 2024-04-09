@@ -1,1 +1,1 @@
-console.log("Hello, precise!");
+console.log('Hello, precise!');
