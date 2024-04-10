@@ -18,7 +18,17 @@
   "publishConfig": {
     "access": "public"
   },
-  "keywords": [],
+  "keywords": [
+    "math",
+    "precision",
+    "finance",
+    "arithmetic",
+    "decimal",
+    "rounding",
+    "floating-point",
+    "parse number",
+    "simple"
+  ],
   "author": "Igor Snitkin <sudo@snigo.dev>",
   "license": "MIT",
   "devDependencies": {
