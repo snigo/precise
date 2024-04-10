@@ -35,9 +35,6 @@
     "tsx": "^4.7.2",
     "typescript": "^5.4.4"
   },
-  "dependencies": {
-    "@gigwork/precise": "link:"
-  },
   "imports": {
     "#src/*": "./src/*"
   }

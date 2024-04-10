@@ -6,7 +6,7 @@ import { getScale } from './scale.js';
  * @example
  * ```
  * 0.1 + 0.2 === 0.3 // => false
- * approxEqual(0.1 + 0.2, 0.3) // => true
+ * approxEqual(0.1 + 0.2, 0.3, 0.1) // => true
  * ```
  * @param a - The first number.
  * @param b - The second number.
