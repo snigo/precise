@@ -150,6 +150,30 @@ avg('123456789'); // => 5
 
 ---
 
+### `ceil`
+
+Rounds number to a certain precision towards -Infinity. This function is a shorthand for `round(number, precision, 'ceil')`.
+
+#### Parameters
+
+- `number` (number): The number to round.
+- `precision` (number): The number of decimal places to round the result to. Default is `0`.
+
+#### Returns
+
+(number): The rounded number.
+
+#### Example
+
+```javascript
+import { ceil } from '@gigwork/precise';
+
+ceil(1.234, 2); // => 1.24
+ceil(1234, -2); // => 1300
+```
+
+---
+
 ### `divide`
 
 Divides the first parseable number by the second one with provided precision and configuration allowing or disallowing division by zero.
@@ -193,6 +217,87 @@ divide(10, -Infinity); // => 0
   divide(null, 100); // => NaN
   divide([1], 2); // => NaN
   ```
+
+---
+
+### `floor`
+
+Rounds number to a certain precision towards Infinity. This function is a shorthand for `round(number, precision, 'floor')`.
+
+#### Parameters
+
+- `number` (number): The number to round.
+- `precision` (number): The number of decimal places to round the result to. Default is `0`.
+
+#### Returns
+
+(number): The rounded number.
+
+#### Example
+
+```javascript
+import { floor } from '@gigwork/precise';
+
+floor(1.234, 2); // => 1.23
+
+// Same as round(1.234, -2, 'floor');
+floor(1234, -2); // => 1200
+```
+
+---
+
+### `getScale`
+
+Calculates the scale of a number, i.e. the number of decimal places.
+
+#### Parameters
+
+- `number` (number): The number to calculate the scale of.
+
+#### Returns
+
+(number): The scale of the number.
+
+#### Example
+
+```javascript
+import { getScale } from '@gigwork/precise';
+
+getScale(0.001); // => 3
+getScale(1000); // => -3
+getScale(0); // => 0
+```
+
+#### Note
+
+Note that the scale is the _opposite_ of the exponent in scientific notation:
+
+```javascript
+getScale(1e-3); // => 3
+getScale(1e3); // => -3
+```
+
+---
+
+### `getUnit`
+
+Calculates the unit of the number, i.e. the smallest number that can be represented by the number within it's precision.
+
+#### Parameters
+
+- `number` (number): The number to calculate the unit of.
+
+#### Returns
+
+(number): The unit of the number.
+
+#### Example
+
+```javascript
+getUnit(12.347); // => 0.001
+getUnit(2000); // => 1000
+getUnit(2024); // => 1
+```
 
 ---
 
@@ -258,6 +363,96 @@ This function will not coerce provided values to numbers:
 multiply(0.1, true); // => NaN
 multiply(null, 100); // => NaN
 multiply([1], 2); // => NaN
+```
+
+---
+
+### `parseNumber`
+
+Parses a number-like value into a number with given precision and rounding mode.
+
+#### Parameters
+
+- `numberLike` (number | string | bigint): The value to parse.
+- `precision` (number): The number of decimal places to round the result to.
+- `mode` ('round' | 'floor' | 'ceil'): The rounding mode to use. Default is `round`.
+
+#### Returns
+
+(number): The parsed number.
+
+#### Example
+
+```javascript
+import { parseNumber } from '@gigwork/precise';
+
+parseNumber('0.1'); // => 0.1
+parseNumber('1.5%', 2); // => 0.02
+parseNumber('1.5%', 2, 'floor'); // => 0.01
+```
+
+#### Note
+
+This function will not coerce provided values to numbers:
+
+```javascript
+parseNumber(false); // => NaN
+parseNumber(null); // => NaN
+parseNumber([1]); // => NaN
+```
+
+---
+
+### `random`
+
+Generates a random number within a given range with provided precision.
+
+#### Parameters
+
+- `min` (number): The lower bound of the range. Default is `0`.
+- `max` (number): The upper bound of the range. Default is `1`.
+- `precision` (number): The number of decimal places to round the result to. Default is `16`.
+
+#### Returns
+
+(number): The random number.
+
+#### Example
+
+```javascript
+import { random } from '@gigwork/precise';
+
+random(); // => 0.1234567890123457
+random(5, 10, 2); // => 7.12
+random(-1, 1, 4); // => -0.3701
+```
+
+---
+
+### `round`
+
+Rounds a number to a given precision and rounding mode.
+
+#### Parameters
+
+- `number` (number): The number to round.
+- `precision` (number): The number of decimal places to round the result to. Default is `0`.
+- `mode` ('round' | 'floor' | 'ceil'): The rounding mode to use. Default is `round`.
+
+#### Returns
+
+(number): The rounded number.
+
+#### Example
+
+```javascript
+import { round } from '@gigwork/precise';
+
+round(1.234); // => 1
+round(1.234, 2); // => 1.23
+round(1.234, 2, 'ceil'); // => 1.24
+round(7654, -2); // => 7700
+round(7654, -2, 'floor'); // => 7600
 ```
 
 ---

@@ -18,7 +18,7 @@ export function getScale(num: number): number {
 }
 
 /**
- * Calculates the unit of the number, the smallest number
+ * Calculates the unit of the number, i.e. the smallest number
  * that can be represented by the number within it's precision.
  * @example
  * ```

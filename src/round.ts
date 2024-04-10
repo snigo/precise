@@ -51,7 +51,7 @@ export function round(
  * @example
  * ```
  * ceil(1.234, 2) // => 1.24
- * ceil(1234, -2) => 1300
+ * ceil(1234, -2) // => 1300
  * ```
  * @param num - The number to round.
  * @param precision - The number of decimal places to keep. Defaults to 0.
@@ -67,7 +67,7 @@ export function ceil(num: number, precision = 0): number {
  * @example
  * ```
  * floor(1.234, 2) // => 1.23
- * floor(1234, -2) => 1200
+ * floor(1234, -2) // => 1200
  * ```
  * @param num - The number to round.
  * @param precision - The number of decimal places to keep. Defaults to 0.
