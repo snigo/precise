@@ -50,3 +50,29 @@ const prices = Array.from({ length: 10000 }, () => random(0, 100, 2));
 avg(prices, 2); // => 50.01
 sum(prices); // => 500998.81
 ```
+
+## Functions
+
+### approxEqual
+
+Checks if two numbers are approximately equal within a given delta.
+
+#### Parameters
+
+- `a` (number): The first number to compare.
+- `b` (number): The second number to compare.
+- `delta` (number): The maximum difference between `a` and `b`. Default is `0`.
+
+#### Returns
+
+(boolean): Returns `true` if the two numbers are approximately equal, otherwise `false`.
+
+#### Example
+
+```javascript
+import { approxEqual } from '@gigwork/precise';
+
+const threshold = 0.0001;
+const interest = (100 + 100 / 25000) ** 25000;
+approxEqual(interest, Math.E, threshold); // => true
+```
