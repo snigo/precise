@@ -24,7 +24,7 @@ export function getScale(num: number): number {
  * ```
  * getUnit(12.347) // => 0.001
  * getUnit(2000) // => 1000
- * getUnit(0.3) // => 0.1
+ * getUnit(2024) // => 1
  * ```
  * @param num - The number to calculate the unit of.
  * @returns The unit of the number.
