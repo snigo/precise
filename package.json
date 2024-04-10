@@ -20,7 +20,7 @@
   "author": "Igor Snitkin <sudo@snigo.dev>",
   "license": "MIT",
   "devDependencies": {
-    "@gigwork/eslint-config-service": "^0.1.4",
+    "@gigwork/eslint-config-service": "^1.0.0",
     "@types/node": "^20.12.6",
     "eslint": "^9.0.0",
     "prettier": "^3.2.5",
