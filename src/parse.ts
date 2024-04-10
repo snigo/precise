@@ -3,12 +3,21 @@ import { getScale } from './scale.js';
 import type { ParseableNumber, RoundingFn } from './types.js';
 
 /**
- * Converts string or number to a certain precision
- * NOTE! This function will not cast values to number, so
+ * Parses a number-like value into a number
+ * with given precision and rounding mode.
+ * @note Will not coerce values to a number.
+ * @example
  * ```
- * parseNumber(false) => NaN
- * parseNumber(null) => NaN
+ * parseNumber('0.1') // => 0.1
+ * parseNumber('1.5%', 2) // => 0.02
+ * parseNumber('1.5%', 2, 'floor') // => 0.01
+ * parseNumber(false) // => NaN
+ * parseNumber(null) // => NaN
  * ```
+ * @param numberLike - The number-like value to parse.
+ * @param precision - The number of decimal places to keep.
+ * @param mode - The rounding mode to use. Defaults to 'round'.
+ * @returns The parsed number.
  */
 export function parseNumber(
   numberLike: ParseableNumber,
