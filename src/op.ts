@@ -4,6 +4,16 @@ import { getScale } from './scale.js';
 import type { ParseableNumber } from './types.js';
 
 /**
+ * An error class for arithmetic errors.
+ */
+class ArithmeticError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'ArithmeticError';
+  }
+}
+
+/**
  * Multiplies two parseable numbers.
  * @example
  * ```
@@ -91,7 +101,7 @@ export function subtract(a: ParseableNumber, b: ParseableNumber) {
 
 /**
  * Divides first parseable number by the second one
- * with provided preciosion and configuration
+ * with provided precision and configuration
  * allowing or disallowing division by zero
  * @note Any number divided by Infinity or -Infinity returns unsigned 0
  * @example
@@ -115,13 +125,12 @@ export function divide(
   strict = true,
 ) {
   const o1 = parseNumber(a);
-  if (Number.isNaN(o1) || !Number.isFinite(o1)) return o1;
+  if (Number.isNaN(o1)) return o1;
   const o2 = parseNumber(b);
   if (Number.isNaN(o2)) return o2;
-  if (!Number.isFinite(o2)) return 0;
   if (o2 === 0 && !strict) return o1 / o2;
   if (o2 === 0) {
-    throw SyntaxError('Cannot divide by zero');
+    throw new ArithmeticError('Division by zero');
   }
   return round(o1 / o2, precision);
 }

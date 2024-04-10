@@ -115,6 +115,117 @@ approxEqual(interest, Math.E, threshold); // => true
 
 ---
 
+### `avg`
+
+Calculates the average of array or iterable of parseable numbers. Returns `0` if array is empty.
+
+#### Parameters
+
+- `nums` (Iterable<number | string | bigint>): An array or iterable of parseable numbers.
+- `precision` (number): The number of decimal places to round the result to. Default is `16`.
+
+#### Returns
+
+(number): The average of the numbers.
+
+#### Example
+
+```javascript
+import { avg } from '@gigwork/precise';
+
+const numbers = [6.123, 4.2345, 0.354, 1.2345];
+avg(numbers); // => 2.9865
+avg(numbers, 2); // => 2.99
+avg([]); // => 0
+avg(); // => TypeError
+```
+
+#### Note
+
+Strings are iterable, which may cause a confusion:
+
+```javascript
+avg('123456789'); // => 5
+```
+
+---
+
+### `divide`
+
+Divides the first parseable number by the second one with provided precision and configuration allowing or disallowing division by zero.
+
+#### Parameters
+
+- `a` (number | string | bigint): The first parseable number.
+- `b` (number | string | bigint): The second parseable number.
+- `precision` (number): The number of decimal places to round the result to. Default is `16`.
+- `strict` (boolean): If `true`, throws an error when dividing by zero. Defaults to `true`.
+
+#### Returns
+
+(number): The result of the division.
+
+#### Example
+
+```javascript
+import { divide } from '@gigwork/precise';
+
+divide(4, 2); // => 2
+divide('100%', 3, 4); // => 0.3333
+divide(10, 0, 16, false); // => Infinity
+divide(10, 0); // => ArithmeticError
+divide(10, -Infinity); // => 0
+```
+
+#### Notes
+
+- Any finite number divided by Infinity or -Infinity returns _unsigned_ 0, which is inconsistent with the built-in division operator and IEEE 754 standard:
+
+  ```javascript
+  10 / -Infinity; // => -0
+  divide(10, -Infinity); // => 0
+  ```
+
+- This function will not coerce provided values to numbers:
+
+  ```javascript
+  divide(0.1, true); // => NaN
+  divide(null, 100); // => NaN
+  divide([1], 2); // => NaN
+  ```
+
+---
+
+### `mod`
+
+Calculates modulo of provided parseable numbers. Keep in mind that modulo is not the same as remainder, you can read about it here: [Mod and Remainder are not the Same](https://bigmachine.io/theory/mod-and-remainder-are-not-the-same/).
+
+#### Parameters
+
+- `a` (number | string | bigint): The dividend.
+- `b` (number | string | bigint): The divisor.
+
+#### Returns
+
+(number): The result of the modulo operation.
+
+#### Example
+
+```javascript
+import { mod } from '@gigwork/precise';
+
+5 % 3; // => 2
+mod(5, 3); // => 2
+
+-5 % 3; // => -2
+mod(-5, 3); // => 1
+
+5 % -3; // => 2
+mod(5, -3); // => -1
+```
+
+---
+
 ### `multiply`
 
 Multiplies two parseable numbers.
