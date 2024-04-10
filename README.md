@@ -51,9 +51,45 @@ avg(prices, 2); // => 50.01
 sum(prices); // => 500998.81
 ```
 
-## Functions
+## Functions A-Z
 
-### approxEqual
+### `add`
+
+Adds provided parseable numbers. If second operand is percentage, the function will apply this percentage to the first operand
+
+#### Parameters
+
+- `a` (number | string | bigint): The first parseable number.
+- `b` (number | string | bigint): The second parseable number.
+
+#### Returns
+
+(number): The sum of the two numbers.
+
+#### Example
+
+```javascript
+import { add } from '@gigwork/precise';
+
+0.1 + 0.2; // => 0.30000000000000004
+add(0.1, 0.2); // => 0.3
+add(10, '20%'); // => 12
+add('20%', '10'); // => 10.2
+```
+
+#### Note
+
+This function will not coerce provided values to numbers:
+
+```javascript
+add(0.1, true); // => NaN
+add(null, 100); // => NaN
+add([1], 2); // => NaN
+```
+
+---
+
+### `approxEqual`
 
 Checks if two numbers are approximately equal within a given delta.
 
@@ -73,6 +109,112 @@ Checks if two numbers are approximately equal within a given delta.
 import { approxEqual } from '@gigwork/precise';
 
 const threshold = 0.0001;
-const interest = (100 + 100 / 25000) ** 25000;
+const interest = (1 + 1 / 25000) ** 25000;
 approxEqual(interest, Math.E, threshold); // => true
 ```
+
+---
+
+### `multiply`
+
+Multiplies two parseable numbers.
+
+#### Parameters
+
+- `a` (number | string | bigint): The first parseable number.
+- `b` (number | string | bigint): The second parseable number.
+
+#### Returns
+
+(number): The product of the two numbers.
+
+#### Example
+
+```javascript
+import { multiply } from '@gigwork/precise';
+
+0.2 * 0.2; // => 0.04000000000000001
+multiply(0.2, 0.2); // => 0.04
+multiply(0.33, '3.3e-1'); // => 0.1089
+multiply('33', '24%'); // => 7.92
+```
+
+#### Note
+
+This function will not coerce provided values to numbers:
+
+```javascript
+multiply(0.1, true); // => NaN
+multiply(null, 100); // => NaN
+multiply([1], 2); // => NaN
+```
+
+---
+
+### `subtract`
+
+Subtracts the second parseable number from the first one. If second operand is percentage, the function will apply this percentage to the first operand.
+
+#### Parameters
+
+- `a` (number | string | bigint): The first parseable number.
+- `b` (number | string | bigint): The second parseable number.
+
+#### Returns
+
+(number): The difference between the two numbers.
+
+#### Example
+
+```javascript
+import { subtract } from '@gigwork/precise';
+
+0.3 - 0.2; // => 0.09999999999999998
+subtract(0.3, 0.2); // => 0.1
+subtract(10, '20%'); // => 8
+```
+
+#### Note
+
+This function will not coerce provided values to numbers:
+
+```javascript
+subtract(0.1, true); // => NaN
+subtract(null, 100); // => NaN
+subtract([1], 2); // => NaN
+```
+
+---
+
+### `sum`
+
+Calculates the sum of array or iterable of parseable numbers. Returns `0` if array is empty.
+
+#### Parameters
+
+- `nums` (Iterable<number | string | bigint>): An array or iterable of parseable numbers.
+
+#### Returns
+
+(number): The sum of the numbers.
+
+#### Example
+
+```javascript
+import { sum } from '@gigwork/precise';
+
+const numbers = new Set([0.1, 0.2, 0.3]);
+sum(numbers); // => 0.6
+sum([]); // => 0
+sum(); // => TypeError
+```
+
+#### Note
+
+Strings are iterable, which may cause a confusion:
+
+```javascript
+sum('123456789'); // => 45
+```
+
+---
