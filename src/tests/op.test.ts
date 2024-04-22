@@ -1,7 +1,16 @@
 import assert from 'node:assert';
 import { describe, it } from 'node:test';
 
-import { add, avg, divide, mod, multiply, subtract, sum } from '#src/op.js';
+import {
+  add,
+  ArithmeticError,
+  avg,
+  divide,
+  mod,
+  multiply,
+  subtract,
+  sum,
+} from '#src/op.js';
 
 describe('add function', () => {
   it('adds numbers', () => {
@@ -95,7 +104,7 @@ describe('divide operator', () => {
   });
 
   it('throws an error by default when divided by 0', () => {
-    assert.throws(() => divide(1, 0), SyntaxError);
+    assert.throws(() => divide(1, 0), ArithmeticError);
   });
 });
 

@@ -20,3 +20,21 @@ export function approxEqual(a: number, b: number, delta = 0): boolean {
   );
   return round(Math.abs(a - b), p) <= delta;
 }
+
+/**
+ * Checks if two numbers are equal when rounded to a given precision
+ * @note Round-half-up is used
+ * @example
+ * ```
+ * 0.1 + 0.2 === 0.3 // => false
+ * roundEqual(0.1 + 0.2, 0.3, 1) // => true
+ * roundEqual(0.15, 0.14, 1) // => false
+ * ```
+ * @param a - The first number.
+ * @param b - The second number.
+ * @param precision - The precision the numbers will be rounded to before the comparison. Defaults to 100.
+ * @returns True if the two numbers are equal after rounding, false otherwise.
+ */
+export function roundEqual(a: number, b: number, precision = 100): boolean {
+  return round(a, precision) === round(b, precision);
+}

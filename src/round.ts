@@ -36,6 +36,7 @@ export function round(
   mode: RoundingFn = 'round',
 ): number {
   _assertPrecision(precision);
+  if (!Number.isFinite(num)) return num;
   const fn = Math[mode];
   if (!precision) {
     return _unsignZero(fn(num));
