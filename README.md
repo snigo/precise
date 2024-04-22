@@ -457,6 +457,38 @@ round(7654, -2, 'floor'); // => 7600
 
 ---
 
+### `roundEqual`
+
+Checks if two numbers are equal when rounded to a given precision.
+
+#### Parameters
+
+- `a` (number): The first number.
+- `b` (number): The second number.
+- `precision` (number): The precision the numbers will be rounded to before the comparison. Defaults to 100.
+
+#### Returns
+
+(boolean): True if the two numbers are equal after rounding, false otherwise.
+
+#### Example
+
+```javascript
+import { roundEqual } from '@gigwork/precise';
+
+roundEqual(0.1 + 0.2, 0.3, 1); // => true
+roundEqual(0.15, 0.14, 1); // => false
+roundEqual(0.15678, 0.15678); // => true
+roundEqual(0.15677, 0.15678, 4); // => true
+roundEqual(0.15677, 0.15678, 5); // => false
+```
+
+#### Note
+
+Round-half-up is used as the default rounding mode.
+
+---
+
 ### `subtract`
 
 Subtracts the second parseable number from the first one. If second operand is percentage, the function will apply this percentage to the first operand.
