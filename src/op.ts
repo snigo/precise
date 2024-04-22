@@ -6,7 +6,7 @@ import type { ParseableNumber } from './types.js';
 /**
  * An error class for arithmetic errors.
  */
-class ArithmeticError extends Error {
+export class ArithmeticError extends Error {
   constructor(message: string) {
     super(message);
     this.name = 'ArithmeticError';
