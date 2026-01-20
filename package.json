@@ -36,7 +36,7 @@
     "@gigwork/eslint-config-service": "^1.0.3",
     "@types/node": "^24.0.0",
     "eslint": "^9.0.0",
-    "glob": "^11.0.0",
+    "glob": "^13.0.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
