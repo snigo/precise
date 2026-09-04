@@ -32,7 +32,7 @@
   "author": "Igor Snitkin <sudo@snigo.dev>",
   "license": "MIT",
   "devDependencies": {
-    "@changesets/cli": "^2.27.1",
+    "@changesets/cli": "^3.0.0",
     "@gigwork/eslint-config-service": "^1.0.3",
     "@types/node": "^24.0.0",
     "eslint": "^10.0.0",
